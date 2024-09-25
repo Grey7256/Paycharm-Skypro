@@ -1,22 +1,24 @@
-from .masks import get_mask_account, get_mask_card_number
-from datetime import datetime
+from src.masks import get_mask_account, get_mask_card_numbers
+
+date = "2024-03-11T02:26:18.671407"
 
 
-def mask_account_card(number: str) -> str:
-    """маскировка счет-карта"""
+def mask_account_card(type_and_number_card: str) -> str:
+    """Функция маскировки сета карты и номера карты"""
 
-    if len(number.split()[-1]) == 16:
-        new_number = get_mask_card_number(number.split()[-1])
-        result = f"{number[:-16]}{new_number}"
-    elif len(number.split()[-1]) == 20:
-        new_number = get_mask_account(number.split()[-1])
-        result = f"{number[:20]}{new_number}"
-    return result
+    split_account_or_card = type_and_number_card.split(" ")
+    if "Счет" in split_account_or_card[-16:]:
+        masked_number = get_mask_account(split_account_or_card[-1])
+    else:
+        masked_number = get_mask_card_numbers(split_account_or_card[-1])
+    split_account_or_card[-1] = masked_number
+    return " ".join(split_account_or_card)
 
 
-def get_date(user_date: str) -> str:
-    """Функция получения даты и времени в формате ДД.ММ.ГГГГ"""
+def get_date(date: str) -> str:
+    """Функция для формата ДД.ММ.ГГГГ"""
 
-    date_format = datetime.strptime(user_date, "%Y-%m-%dT%H:%M:%S.%f")
-    new_date = date_format.strftime("%d.%m.%Y")
-    return new_date
+    user_date = f"{date[8:10]}.{date[5:7]}.{date[:4]}"
+    return user_date
+
+print(f'Дата: {get_date("2024-03-11T02:26:18.671407")}')

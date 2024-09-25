@@ -1,14 +1,21 @@
-def get_mask_card_number(card_number: str) -> str:
-    """Функция маскирует номер карты"""
-    return f"{card_number[:4]}{card_number[4:6]}** **** {card_number[12:]}"
+def get_mask_card_numbers(card: str) -> str:
+    """функция маскировки  карты"""
+    operation_list = list()
+    operation_list.append(card[0:4])
+    operation_list.append(card[4:6] + "**")
+    operation_list.append("****")
+    operation_list.append(card[12:])
+    return " ".join(operation_list)
 
 
-print(f"Visa Gold: {get_mask_card_number("5999414228426353")}")
+def get_mask_account(ac_number: str) -> str:
+    """функция маскировки счета"""
+    new_list = list()
+    new_list.append("**" + ac_number[-4:])
+    return " ".join(new_list)
 
 
-def get_mask_account(account_number: str) -> str:
-    """Функция маскирует номер счета"""
-    return f"**{account_number[-4:]}"
-
-
-print(f"Счет: {get_mask_account("73654108430135874305")}")
+account_number = 73654108430135874305
+card_number = 5999414228426353
+print(f"Visa Gold: {(get_mask_card_numbers(str(card_number)))}")
+print(f"Счет: {(get_mask_account(str(account_number)))}")
