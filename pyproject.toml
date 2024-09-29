@@ -25,16 +25,8 @@ no_implicit_optional = true
 
 [tool.black]
 line-length = 119
-exclude =
-(
-      \.eggs
-    | \.git
-    | \.hg
-    | \.mypy_cache
-    | \.tox
-    | \.venv
-    | dist
-  )
+exclude =".git"
+
 
 [tool.isort]
 line_length = 119
