@@ -9,23 +9,27 @@ list_of_dicts = [
 
 
 def filter_by_state(list_of_dict: list[dict[str, Any]], state: str = "EXECUTED") -> Any:
-    """ Функция принимает список словарей и значение для ключа и возвращает новый
+    """Функция принимает список словарей и значение для ключа и возвращает новый
     список содержащий только те словари у которых ключ содержит переданное значение"""
 
     return [d for d in list_of_dict if d.get("state") == state]
 
+
 print(filter_by_state(list_of_dicts))
+
 
 def sort_by_date(
     list_of_dict: list[dict[str, Any]], reverse: bool = True
 ) -> list[dict[str, Any]]:
-    """Функция принимает список и сортирует его по убыванию """
+    """Функция принимает список и сортирует его по убыванию"""
 
     sorted_list = sorted(
         list_of_dict,
         key=lambda new_list_of_dict: new_list_of_dict["date"],
         reverse=reverse,
     )
+
     return sorted_list
+
 
 print(sort_by_date(list_of_dicts))
