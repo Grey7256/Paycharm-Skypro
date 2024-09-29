@@ -21,4 +21,5 @@ def get_date(date: str) -> str:
     user_date = f"{date[8:10]}.{date[5:7]}.{date[:4]}"
     return user_date
 
+
 print(f'Дата: {get_date("2024-03-11T02:26:18.671407")}')
