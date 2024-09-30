@@ -30,3 +30,6 @@ def sort_by_date(list_of_dicts: list[dict[str, Any]], reverse_list: bool = True)
 
 
 print(sort_by_date(list_of_dicts))
+
+list_first_func = filter_by_state
+list_second_func = sort_by_date
